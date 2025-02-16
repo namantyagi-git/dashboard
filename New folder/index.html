@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Dashboard</title>
+    <link rel="stylesheet" href="index.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let startTime = localStorage.getItem("startTime");
+        if (!startTime) {
+          startTime = Date.now();
+          localStorage.setItem("startTime", startTime);
+        }
+
+        function updateTimer() {
+          let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+          let hours = Math.floor(elapsedTime / 3600);
+          let minutes = Math.floor((elapsedTime % 3600) / 60);
+          let seconds = elapsedTime % 60;
+          document.getElementById(
+            "timer"
+          ).textContent = `${hours}h ${minutes}m ${seconds}s`;
+        }
+        setInterval(updateTimer, 1000);
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="nav-left">
+        <img src="/1691936 (1).png" alt="Logo" class="logo" />
+        <ul class="nav-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Admin</a></li>
+          <li><a href="#">All Tasks</a></li>
+          <li><a href="#">Unfinished Tasks</a></li>
+        </ul>
+      </div>
+      <div
+        id="timer"
+        style="font-size: 16px; font-weight: bold; margin-right: 20px"
+      ></div>
+      <div class="nav-right">
+        <div class="search-container">
+          <input type="text" class="search-bar" placeholder="Search tasks..." />
+          <button class="search-button">Go</button>
+        </div>
+        <img src="/image (1).png" alt="User Profile" class="profile-pic" />
+      </div>
+    </header>
+
+    <!-- Poster Section -->
+    <section class="poster">
+      <img
+        src="/vecteezy_stunning-high-resolution-nature-and-landscape-backgrounds_49546698.jpg"
+        alt="Poster Image"
+        class="poster-img"
+      />
+      <div class="poster-text">
+        <h1>Manage Your Tasks Efficiently</h1>
+        <p>
+          Track your ongoing and completed tasks with ease. Stay productive and
+          focused.
+        </p>
+      </div>
+    </section>
+
+    <!-- Ongoing Tasks Section -->
+    <section class="task-section">
+      <h2>Ongoing Tasks</h2>
+      <div class="task-wrapper">
+        <button class="scroll-btn left">&#60;</button>
+        <div class="task-container">
+          <div class="task-box">Task 1</div>
+          <div class="task-box">Task 2</div>
+          <div class="task-box">Task 3</div>
+          <div class="task-box">Task 4</div>
+          <div class="task-box">Task 5</div>
+          <div class="task-box">Task 6</div>
+        </div>
+        <button class="scroll-btn right">&#62;</button>
+      </div>
+    </section>
+
+    <!-- Completed Tasks Section -->
+    <section class="task-section">
+      <h2>Completed Tasks</h2>
+      <div class="task-container">
+        <div class="task-box">Task 7</div>
+        <div class="task-box">Task 8</div>
+        <div class="task-box">Task 9</div>
+      </div>
+      <div class="task-container">
+        <div class="task-box">Task 10</div>
+        <div class="task-box">Task 11</div>
+        <div class="task-box">Task 12</div>
+      </div>
+      <button>Load More</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Task Manager. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.querySelector(".task-container");
+        const rightButton = document.querySelector(".scroll-btn.right");
+        const leftButton = document.querySelector(".scroll-btn.left");
+
+        rightButton.addEventListener("click", function () {
+          container.scrollBy({ left: 350, behavior: "smooth" });
+        });
+
+        leftButton.addEventListener("click", function () {
+          container.scrollBy({ left: -350, behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
