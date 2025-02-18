@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Analytics | Job Dashboard</title>
+    <link rel="stylesheet" href="/css folder/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <img src="/pic/logo.jpg" alt="" />
+            <h1>jobs</h1>
+          </div>
+          <ul>
+            <li>
+              <a href="/index.html">
+                <i class="fas fa-user"></i>
+                <span class="nav-item">Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="/analytics.html" class="active">
+                <i class="fas fa-chart-bar"></i>
+                <span class="nav-item">Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-tasks"></i>
+                <span class="nav-item">Jobs Board</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-dochub"></i>
+                <span class="nav-item">Documents</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-cog"></i>
+                <span class="nav-item">Setting</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <section class="main">
+        <div class="main-top">
+          <p>Analytics Overview</p>
+        </div>
+
+        <div class="main-body">
+          <h1>Search Jobs</h1>
+          <div class="search_bar">
+            <input type="search" placeholder="Search job here..." />
+            <select name="" id="">
+              <option>Category</option>
+              <option>Web Design</option>
+              <option>App Design</option>
+              <option>App Development</option>
+            </select>
+            <select class="filter">
+              <option>Filter</option>
+            </select>
+          </div>
+
+          <h1>Analytics Dashboard</h1>
+          <div class="analytics-section">
+            <div class="analytics-card">
+              <h2>Total Time Spent</h2>
+              <p id="totalTime">00:00:00</p>
+            </div>
+            <div class="analytics-card">
+              <h2>Current Task Time</h2>
+              <p id="taskTime">00:00:00</p>
+            </div>
+            <div class="analytics-card">
+              <h2>Logged In Time</h2>
+              <p id="loggedInTime">00:00:00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let totalTime = 0;
+      let taskTime = 0;
+      let loggedInTime = 0;
+      let taskTimerInterval;
+      let loggedInTimerInterval;
+
+      const totalTimeEl = document.getElementById("totalTime");
+      const taskTimeEl = document.getElementById("taskTime");
+      const loggedInTimeEl = document.getElementById("loggedInTime");
+
+      function formatTime(seconds) {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(
+          2,
+          "0"
+        )}:${String(secs).padStart(2, "0")}`;
+      }
+
+      function startLoggedInTimer() {
+        loggedInTimerInterval = setInterval(() => {
+          loggedInTime++;
+          loggedInTimeEl.textContent = formatTime(loggedInTime);
+        }, 1000);
+      }
+
+      function startTaskTimer() {
+        if (!taskTimerInterval) {
+          taskTimerInterval = setInterval(() => {
+            taskTime++;
+            taskTimeEl.textContent = formatTime(taskTime);
+          }, 1000);
+        }
+      }
+
+      function stopTaskTimer() {
+        clearInterval(taskTimerInterval);
+        taskTimerInterval = null;
+        totalTime += taskTime;
+        totalTimeEl.textContent = formatTime(totalTime);
+        taskTime = 0;
+        taskTimeEl.textContent = formatTime(taskTime);
+      }
+
+      function resetLoggedInTime() {
+        clearInterval(loggedInTimerInterval);
+        loggedInTime = 0;
+        loggedInTimeEl.textContent = formatTime(loggedInTime);
+      }
+
+      startLoggedInTimer();
+
+      document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("task-toggle")) {
+          if (!taskTimerInterval) {
+            startTaskTimer();
+          } else {
+            stopTaskTimer();
+          }
+        }
+      });
+
+      document.querySelector(".logout").addEventListener("click", () => {
+        resetLoggedInTime();
+      });
+    });
+  </script>
+</html>

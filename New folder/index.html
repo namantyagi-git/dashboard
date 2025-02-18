@@ -1,124 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Dashboard</title>
-    <link rel="stylesheet" href="index.css" />
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        let startTime = localStorage.getItem("startTime");
-        if (!startTime) {
-          startTime = Date.now();
-          localStorage.setItem("startTime", startTime);
-        }
+    <title>Job Dashboard | By Code Info</title>
 
-        function updateTimer() {
-          let elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-          let hours = Math.floor(elapsedTime / 3600);
-          let minutes = Math.floor((elapsedTime % 3600) / 60);
-          let seconds = elapsedTime % 60;
-          document.getElementById(
-            "timer"
-          ).textContent = `${hours}h ${minutes}m ${seconds}s`;
-        }
-        setInterval(updateTimer, 1000);
-      });
-    </script>
+    <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="/css folder/index.css" />
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <div class="nav-left">
-        <img src="/1691936 (1).png" alt="Logo" class="logo" />
-        <ul class="nav-menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Admin</a></li>
-          <li><a href="#">All Tasks</a></li>
-          <li><a href="#">Unfinished Tasks</a></li>
-        </ul>
-      </div>
-      <div
-        id="timer"
-        style="font-size: 16px; font-weight: bold; margin-right: 20px"
-      ></div>
-      <div class="nav-right">
-        <div class="search-container">
-          <input type="text" class="search-bar" placeholder="Search tasks..." />
-          <button class="search-button">Go</button>
+    <div class="container">
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <img src="/pic/logo.jpg" alt="" />
+            <h1>jobs</h1>
+          </div>
+          <ul>
+            <li>
+              <a href="#">
+                <i class="fas fa-user"></i>
+                <span class="nav-item">Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="/analytics.html">
+                <i class="fas fa-chart-bar"></i>
+                <span class="nav-item">Analytics</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-tasks"></i>
+                <span class="nav-item">Jobs Board</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-dochub"></i>
+                <span class="nav-item">Documnents</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-cog"></i>
+                <span class="nav-item">Setting</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fas fa-question-circle"></i>
+                <span class="nav-item">Help</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item">Logout</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <img src="/image (1).png" alt="User Profile" class="profile-pic" />
-      </div>
-    </header>
+      </nav>
 
-    <!-- Poster Section -->
-    <section class="poster">
-      <img
-        src="/vecteezy_stunning-high-resolution-nature-and-landscape-backgrounds_49546698.jpg"
-        alt="Poster Image"
-        class="poster-img"
-      />
-      <div class="poster-text">
-        <h1>Manage Your Tasks Efficiently</h1>
-        <p>
-          Track your ongoing and completed tasks with ease. Stay productive and
-          focused.
-        </p>
-      </div>
-    </section>
-
-    <!-- Ongoing Tasks Section -->
-    <section class="task-section">
-      <h2>Ongoing Tasks</h2>
-      <div class="task-wrapper">
-        <button class="scroll-btn left">&#60;</button>
-        <div class="task-container">
-          <div class="task-box">Task 1</div>
-          <div class="task-box">Task 2</div>
-          <div class="task-box">Task 3</div>
-          <div class="task-box">Task 4</div>
-          <div class="task-box">Task 5</div>
-          <div class="task-box">Task 6</div>
+      <section class="main">
+        <div class="main-top">
+          <p>Explore the universe!</p>
         </div>
-        <button class="scroll-btn right">&#62;</button>
-      </div>
-    </section>
+        <div class="main-body">
+          <h1>Recent Jobs</h1>
 
-    <!-- Completed Tasks Section -->
-    <section class="task-section">
-      <h2>Completed Tasks</h2>
-      <div class="task-container">
-        <div class="task-box">Task 7</div>
-        <div class="task-box">Task 8</div>
-        <div class="task-box">Task 9</div>
-      </div>
-      <div class="task-container">
-        <div class="task-box">Task 10</div>
-        <div class="task-box">Task 11</div>
-        <div class="task-box">Task 12</div>
-      </div>
-      <button>Load More</button>
-    </section>
+          <div class="search_bar">
+            <input type="search" placeholder="Search job here..." />
+            <select name="" id="">
+              <option>Category</option>
+              <option>Web Design</option>
+              <option>App Design</option>
+              <option>App Development</option>
+            </select>
+            <select class="filter">
+              <option>Filter</option>
+            </select>
+          </div>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 Task Manager. All Rights Reserved.</p>
-    </footer>
+          <div class="tags_bar">
+            <div class="tag">
+              <i class="fas fa-times"></i>
+              <span>Programming</span>
+            </div>
+            <div class="tag">
+              <i class="fas fa-times"></i>
+              <span>Design</span>
+            </div>
+            <div class="tag">
+              <i class="fas fa-times"></i>
+              <span>PHP</span>
+            </div>
+            <div class="tag">
+              <i class="fas fa-times"></i>
+              <span>JavaScript</span>
+            </div>
+          </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const container = document.querySelector(".task-container");
-        const rightButton = document.querySelector(".scroll-btn.right");
-        const leftButton = document.querySelector(".scroll-btn.left");
+          <div class="row">
+            <p>There are more than <span>400</span> Jobs</p>
+            <a href="#">See all</a>
+          </div>
 
-        rightButton.addEventListener("click", function () {
-          container.scrollBy({ left: 350, behavior: "smooth" });
-        });
+          <div class="job_card">
+            <div class="job_details">
+              <div class="img">
+                <i class="fab fa-google-drive"></i>
+              </div>
+              <div class="text">
+                <h2>UX Designer</h2>
+                <span>Google Drive - Junior Post</span>
+              </div>
+            </div>
+            <div class="job_salary">
+              <h4>$6.7 - $12.5k /yr</h4>
+              <span>1 days ago</span>
+            </div>
+          </div>
 
-        leftButton.addEventListener("click", function () {
-          container.scrollBy({ left: -350, behavior: "smooth" });
-        });
-      });
-    </script>
+          <div class="job_card">
+            <div class="job_details">
+              <div class="img">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="text">
+                <h2>JavaScript Developer</h2>
+                <span>Google - Senior Post</span>
+              </div>
+            </div>
+            <div class="job_salary">
+              <h4>$8.7 - $13.2k /yr</h4>
+              <span>2 days ago</span>
+            </div>
+          </div>
+
+          <div class="job_card">
+            <div class="job_details">
+              <div class="img">
+                <i class="fab fa-facebook"></i>
+              </div>
+              <div class="text">
+                <h2>Product Developer</h2>
+                <span>Facbook - Manager Post</span>
+              </div>
+            </div>
+            <div class="job_salary">
+              <h4>$11 - $18.5k /yr</h4>
+              <span>2 days ago</span>
+            </div>
+          </div>
+
+          <div class="job_card">
+            <div class="job_details">
+              <div class="img">
+                <i class="fab fa-git-alt"></i>
+              </div>
+              <div class="text">
+                <h2>Programmer</h2>
+                <span>Github - Juni Post</span>
+              </div>
+            </div>
+            <div class="job_salary">
+              <h4>$6 - $11.5k /yr</h4>
+              <span>3 days ago</span>
+            </div>
+          </div>
+
+          <div class="job_card">
+            <div class="job_details">
+              <div class="img">
+                <i class="fab fa-youtube"></i>
+              </div>
+              <div class="text">
+                <h2>React.js Expert</h2>
+                <span>Youtube - VIP</span>
+              </div>
+            </div>
+            <div class="job_salary">
+              <h4>$12.5 - $25.5k /yr</h4>
+              <span>4 days ago</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
